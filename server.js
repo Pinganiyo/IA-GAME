@@ -95,7 +95,7 @@ if (!apiKey) console.error("❌ FALTA GEMINI_API_KEY en .env");
 const genAI = new GoogleGenerativeAI(apiKey);
 
 // 1. GENERACIÓN DE TEXTO (GEMINI 1.5)
-async function requestGeminiChat({ playerMessage, gameState, gameDefinition, narrativePrimer, globalContext }) {
+async function requestGeminiChat({ playerMessage, gameState, gameDefinition, narrativePrimer, globalContext, playerInfo }) {
   // Configuramos el modelo para que FUERCE la respuesta en JSON
   const model = genAI.getGenerativeModel({
     model: process.env.GEMINI_MODEL || "gemini-1.5-flash",
@@ -123,6 +123,7 @@ async function requestGeminiChat({ playerMessage, gameState, gameDefinition, nar
        - "imagePrompt": Una descripción visual detallada en INGLÉS (para el generador de imágenes) de la escena actual.
     3. Contexto del juego: ${JSON.stringify(gameDefinition)}
     4. Estado actual (si existe): ${gameState ? JSON.stringify(gameState) : "Inicio del juego"}
+    5. JUGADOR ACTUAL: ${playerInfo || "Unknown"}
     
     HISTORIA PREVIA (Contexto Global de todos los jugadores):
     ${globalContext || "No history yet."}
@@ -252,13 +253,27 @@ app.post('/api/chat', async (req, res) => {
       }
     }
 
+    // 2b. Fetch Current Player Info
+    let playerInfo = "Unknown Player";
+    if (playerId) {
+      const { data: player } = await supabase
+        .from('players')
+        .select('*')
+        .eq('id', playerId)
+        .single();
+      if (player) {
+        playerInfo = `Nombre: ${player.name}, Personaje: ${player.character}`;
+      }
+    }
+
     // 3. Obtenemos texto e idea visual de Gemini
     const chatResponse = await requestGeminiChat({
       playerMessage: message,
       gameState,
       gameDefinition,
       narrativePrimer,
-      globalContext // Pass this new shared context
+      globalContext, // Pass this new shared context
+      playerInfo     // Pass current player identity
     });
 
     // 4. Store AI Response
