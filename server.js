@@ -27,12 +27,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, 'public');
 const narrativePromptPath = path.join(__dirname, 'promt3.txt');
+const multiplayerPromptPath = path.join(__dirname, 'promt3-multiplayer.txt');
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 // --- CACHE & UTILIDADES ---
 let narrativePromptCache = null;
+let multiplayerPromptCache = null;
 
 async function getNarrativePrompt() {
   if (narrativePromptCache) return narrativePromptCache;
@@ -40,10 +42,22 @@ async function getNarrativePrompt() {
     narrativePromptCache = await fs.readFile(narrativePromptPath, 'utf-8');
   } catch (error) {
     console.warn('⚠️ No se encontró promt3.txt, usando default.');
-    narrativePromptCache = 'Eres un narrador de juegos de rol. Responde en JSON.';
+    narrativePromptCache = 'Eres un narrador de juegos de rol';
   }
   return narrativePromptCache;
 }
+
+async function getMultiplayerNarrativePrompt() {
+  if (multiplayerPromptCache) return multiplayerPromptCache;
+  try {
+    multiplayerPromptCache = await fs.readFile(multiplayerPromptPath, 'utf-8');
+  } catch (error) {
+    console.warn('⚠️ No se encontró promt3-multiplayer.txt, usando fallback.');
+    return await getNarrativePrompt();
+  }
+  return multiplayerPromptCache;
+}
+
 
 // --- SUPABASE HELPERS ---
 
