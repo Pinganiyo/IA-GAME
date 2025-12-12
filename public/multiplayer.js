@@ -1,8 +1,4 @@
-// Force WebSocket transport to avoid Vercel polling issues
-const socket = io({
-    transports: ["websocket"],
-    upgrade: false
-});
+const socket = io();
 
 // 1. Determine Identity (Room Code vs Game ID)
 const searchParams = new URLSearchParams(window.location.search);
