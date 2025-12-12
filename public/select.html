@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Game - Choose Scenario</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <h1>Select Your Mission</h1>
+    <p>Choose a narrative scenario to brief Gemini before the odyssey begins.</p>
+  </header>
+
+  <main class="selection-main">
+    <section class="selection-panel">
+      <h2>Available Scenarios</h2>
+      <p class="selection-note">
+        Each scenario includes its own world, objectives, and tension curve. Pick one to begin the expedition.
+      </p>
+      <div class="game-grid" id="game-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="game-card-template">
+    <article class="game-card">
+      <img class="game-image" src="" alt="Game Image" />
+      <header>
+        <h3 class="game-title"></h3>
+        <p class="game-rounds"></p>
+      </header>
+      <p class="game-summary"></p>
+      <div class="button-group" style="display: flex; gap: 0.5rem; margin-top: auto;">
+        <button type="button" class="select-button single-player-button">Single Player</button>
+        <button type="button" class="select-button multiplayer-button"
+          style="background: linear-gradient(135deg, #ff0080, #7928ca);">Multiplayer</button>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="select.js"></script>
+</body>
+
+</html>

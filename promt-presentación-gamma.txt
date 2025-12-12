@@ -1,0 +1,67 @@
+Tema: Presentación de un Sistema de "Prompt Engineering" para Juegos de Rol Narrativos con IA.
+
+Estilo Visual Sugerido: Cyberpunk, Neon, Dark Tech, Glitch, Futurist.
+
+Instrucciones Generales: Crea una presentación profesional, visualmente impactante y tensa que explique cómo funciona este prompt avanzado. Usa un lenguaje épico pero técnico.
+
+Estructura de las Diapositivas (Outline):
+
+Título: La Entidad Narrativa Externa: Convirtiendo a la IA en un Game Master Supremo.
+
+Subtítulo: Un sistema estructurado basado en JSON y Narrativa Atmosférica.
+
+El Concepto Central: ¿Qué es la "Entidad Narrativa"?
+
+Explica que no es un personaje, sino el universo mismo.
+
+Diferencia clave: La IA gestiona la tensión, el clima y las consecuencias, no solo los diálogos.
+
+Objetivo: Supervivencia en 10 rondas de alta tensión.
+
+El Cerebro del Sistema: La Fuente de Verdad (JSON).
+
+Detalla que el juego se rige por un código estricto (JSON) externo.
+
+La IA no inventa las estadísticas, las lee: Salud, Recursos, Moral y Rasgos de Personaje.
+
+Esto garantiza coherencia absoluta y evita "alucinaciones" de la IA.
+
+La Mecánica Inmersiva: "El Velo Interno".
+
+Explica el concepto de "Variables Ocultas".
+
+La IA calcula peligros y suerte en secreto.
+
+El jugador solo percibe las consecuencias a través de la atmósfera (ej: "sientes un escalofrío" en lugar de "peligro sube 10%").
+
+Visualización Dinámica: Generación de Imágenes.
+
+Destaca que el prompt obliga a la IA a generar imágenes en cada ronda.
+
+Imagen Inicial: Establece el tono.
+
+Imagen de Cierre: Muestra las consecuencias ambientales de las decisiones (sin mostrar rostros humanos para mantener el misterio).
+
+El Flujo de Juego (Loop).
+
+Fase 1: Presentación y asignación (Manual o Aleatoria).
+
+Fase 2: Rondas 1-7 (Guionadas por JSON) vs Rondas 8-10 (Caos dinámico).
+
+Fase 3: Sistema de Fatiga y Decisiones (Solo personajes presentes pueden actuar).
+
+Caso de Estudio: "La Reliquia Rota" (Cyberpunk Edgerunners).
+
+Muestra el ejemplo práctico incluido en el prompt.
+
+Personajes: Lucy, Falco, Kiwi.
+
+Misión: Infiltrarse en Arasaka para recuperar el Engram de David.
+
+Amenaza: El Agente "El Recolector" (Militech).
+
+Conclusión y Formato de Salida.
+
+Muestra cómo la IA entrega la información: Narración -> Estado -> Opciones -> Imagen.
+
+Llamada a la acción: "Copia el prompt, carga el JSON y sobrevive."

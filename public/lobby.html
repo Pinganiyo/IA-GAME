@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Game - Multiplayer Lobby</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="app-background" class="app-background"></div>
+
+    <header class="app-header">
+        <div class="app-header__primary">
+            <h1>Multiplayer Lobby</h1>
+            <p>Join a game session</p>
+        </div>
+        <a class="change-scenario" href="/">Back to Menu</a>
+    </header>
+
+    <main class="selection-main">
+        <section class="selection-panel" id="lobby-panel">
+            <h2>Join Game</h2>
+            <form id="join-form" class="chat-form"
+                style="grid-template-columns: 1fr; max-width: 400px; margin: 0 auto;">
+                <div style="display: grid; gap: 0.5rem;">
+                    <label for="player-name">Your Name</label>
+                    <input type="text" id="player-name" required placeholder="Enter your name"
+                        style="padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(87, 97, 255, 0.3); background: rgba(16, 19, 35, 0.9); color: white;">
+                </div>
+
+                <div style="display: grid; gap: 0.5rem;">
+                    <label for="player-character">Select Character</label>
+                    <select id="player-character" required
+                        style="padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(87, 97, 255, 0.3); background: rgba(16, 19, 35, 0.9); color: white;">
+                        <option value="">Loading characters...</option>
+                    </select>
+                </div>
+
+                <div id="game-info"
+                    style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <h3 id="game-title">Loading game info...</h3>
+                    <p id="game-summary" style="font-size: 0.9rem; opacity: 0.8;"></p>
+                </div>
+
+                <button type="submit" class="select-button" style="width: 100%; justify-self: center;">Join
+                    Session</button>
+            </form>
+
+            <div id="lobby-status" class="hidden" style="text-align: center; margin-top: 2rem;">
+                <h3>Waiting for players...</h3>
+                <div id="player-list" style="display: grid; gap: 0.5rem; margin-top: 1rem;">
+                    <!-- Players will be listed here -->
+                </div>
+                <p id="session-id-display" style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.5;"></p>
+
+                <div id="countdown-display"
+                    style="margin-top: 1rem; font-size: 1.5rem; font-weight: bold; color: #ff0080; display: none;">
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                    <button id="exit-btn" type="button" class="select-button"
+                        style="background: rgba(255, 99, 71, 0.2); border: 1px solid rgba(255, 99, 71, 0.5);">
+                        Exit Lobby
+                    </button>
+                    <button id="start-game-btn" type="button" class="select-button"
+                        style="background: linear-gradient(135deg, #4ade80, #3b82f6); display: none;">
+                        Start Game
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="multiplayer.js"></script>
+</body>
+
+</html>

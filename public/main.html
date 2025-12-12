@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div id="app-background" class="app-background"></div>
+  <header class="app-header">
+    <div class="app-header__primary">
+      <h1 id="scenario-title">IA Game Control Room</h1>
+      <p id="scenario-summary">Preparando misión...</p>
+    </div>
+    <a class="change-scenario" href="/">Cambiar escenario</a>
+  </header>
+
+  <main class="app-main">
+    <section class="chat-panel">
+      <div class="chat-feed" id="chat-feed"></div>
+      <div class="loading-indicator hidden" id="loading-indicator">
+        <span></span><span></span><span></span>
+      </div>
+      <form id="chat-form" class="chat-form">
+        <textarea id="chat-input" rows="3" placeholder="Describe the next move or ask Game Master for guidance"
+          required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <section class="image-panel">
+      <div class="image-wrapper">
+        <img id="scene-image" src="" alt="Current scene" />
+        <div class="prompt-overlay">
+          <h2>Scene Prompt</h2>
+          <p id="image-prompt">No prompt yet.</p>
+        </div>
+      </div>
+      <div class="image-meta">
+        <h2>Informe de misión</h2>
+        <dl>
+          <div class="brief-row">
+            <dt>Objetivo principal</dt>
+            <dd id="scenario-objective">Cargando objetivo...</dd>
+          </div>
+          <div class="brief-row">
+            <dt>Riesgo principal</dt>
+            <dd id="scenario-risk">Cargando riesgo...</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <template id="chat-message-template">
+    <article class="chat-message">
+      <header>
+        <span class="author"></span>
+        <time class="timestamp"></time>
+      </header>
+      <p class="content"></p>
+    </article>
+  </template>
+
+  <script type="module" src="main.js"></script>
+</body>
+
+</html>
