@@ -158,6 +158,24 @@ async function generateImageWithGemini(prompt) {
 }
 
 
+async function getNarrativePrompt() {
+  try {
+    return await fs.readFile(path.join(__dirname, 'promt3.txt'), 'utf-8');
+  } catch (err) {
+    console.error('Error reading prompt file:', err);
+    return "Eres un narrador de juegos de rol. Guía a los jugadores a través de una aventura.";
+  }
+}
+
+async function getMultiplayerNarrativePrompt() {
+  try {
+    return await fs.readFile(path.join(__dirname, 'promt3-multiplayer.txt'), 'utf-8');
+  } catch (err) {
+    console.error('Error reading multiplayer prompt file:', err);
+    return await getNarrativePrompt();
+  }
+}
+
 // --- RUTAS API ---
 
 app.get('/api/games', async (_req, res) => {
@@ -191,9 +209,12 @@ app.post('/api/chat', async (req, res) => {
     const { message, gameState, gameId, sessionId, playerId } = req.body;
 
     // 1. Cargamos datos
+    // Select prompt based on session type
+    const promptLoader = sessionId ? getMultiplayerNarrativePrompt() : getNarrativePrompt();
+
     const [gameDefinition, narrativePrimer] = await Promise.all([
       loadGameDefinition(gameId),
-      getNarrativePrompt()
+      promptLoader
     ]);
 
     // 2. Fetch Chat History (Global Context)
